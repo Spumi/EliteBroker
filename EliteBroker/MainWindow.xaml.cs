@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EliteBroker.DataConsumers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace EliteBroker
         public MainWindow()
         {
             InitializeComponent();
+           
         }
     }
 }
