@@ -16,14 +16,14 @@ namespace EliteBroker.DataConsumers
     {
         private string logPath;
         private FileSystemWatcher fsw;
-        private MarketData market;
+        private DataStore data;
         
         // todo: move fsw to it's own class
 
-        public LogReader(string path, ref MarketData market)
+        public LogReader(string path, ref DataStore data)
         {
             logPath = path;
-            this.market = market;
+            this.data = data;
             try
             {
                 fsw = new FileSystemWatcher(path);
@@ -43,7 +43,7 @@ namespace EliteBroker.DataConsumers
             string marketFile = @"Market.json";
             if (e.Name == marketFile)
             {
-                market = ReadMarket(marketFile);
+               data.Market = ReadMarket(marketFile);
             }
         }
 
@@ -55,7 +55,7 @@ namespace EliteBroker.DataConsumers
             using (StreamReader file = File.OpenText(logPath + fileName))
             {
                 marketData = (MarketData)serializer.Deserialize(file, typeof(MarketData));
-                marketData.Items = new ObservableCollection<Comodity>(market.Items.OrderByDescending(c => c.SellPrice));
+                marketData.Items = new ObservableCollection<Comodity>(marketData.Items.OrderByDescending(c => c.SellPrice));
             }
 
             return marketData;
