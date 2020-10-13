@@ -1,12 +1,12 @@
 ﻿using PropertyChanged;
+using System.ComponentModel;
 
 namespace EliteBroker.Models
 {
     [AddINotifyPropertyChangedInterface]
+    
     public class Comodity
     {
-        private int buyPrice;
-
         public string Id { get; set; }
         public string Name { get; set; }
         public string Name_Localised { get; set; }

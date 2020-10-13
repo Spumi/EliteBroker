@@ -2,15 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Text;
+using System.Windows.Controls.Primitives;
 
 namespace EliteBroker.Models
 {
     [AddINotifyPropertyChangedInterface]
-    public class MarketData
+    public class MarketData 
     {
-        private ObservableCollection<Comodity> items;
-
         public MarketData()
         {
             Items = new ObservableCollection<Comodity>();

@@ -9,11 +9,12 @@ namespace EliteBroker
     [AddINotifyPropertyChangedInterface]
     public class DataStore
     {
+        public MarketData Market { get; set; }
+
         public DataStore()
         {
             Market = new MarketData();
         }
 
-        public MarketData Market { get; set; }
     }
 }
