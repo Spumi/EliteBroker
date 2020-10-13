@@ -12,7 +12,7 @@ namespace EliteBroker.DataConsumers
 
         public LogPathLocator(){
             var userDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            LogPath = userDirectory + @"Saved Games\Frontier Developments\Elite Dangerous\";
+            LogPath = userDirectory + @"\Saved Games\Frontier Developments\Elite Dangerous\";
         }
     }
 }
