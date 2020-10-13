@@ -9,7 +9,16 @@ namespace EliteBroker
     [AddINotifyPropertyChangedInterface]
     public class DataStore
     {
-        public MarketData Market { get; set; }
+        public Action OnMarketUpdate { get; set; }
+        private MarketData market;
+        public MarketData Market { 
+            get => market;
+            set { 
+                market = value;
+                if (OnMarketUpdate != null)
+                    OnMarketUpdate.Invoke();
+            } 
+        }
 
         public DataStore()
         {
