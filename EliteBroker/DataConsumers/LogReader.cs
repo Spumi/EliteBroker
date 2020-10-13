@@ -1,6 +1,7 @@
 ﻿using EliteBroker.Models;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -43,8 +44,8 @@ namespace EliteBroker.DataConsumers
             string marketFile = @"Market.json";
             if (e.Name == marketFile)
             {
-               data.Market = ReadMarket(marketFile);
-            }
+                data.Market = ReadMarket(marketFile);
+             }
         }
 
         private MarketData ReadMarket(string fileName)
@@ -55,8 +56,8 @@ namespace EliteBroker.DataConsumers
             using (StreamReader file = File.OpenText(logPath + fileName))
             {
                 marketData = (MarketData)serializer.Deserialize(file, typeof(MarketData));
-                marketData.Items = new ObservableCollection<Comodity>(marketData.Items.OrderByDescending(c => c.SellPrice));
-            }
+                marketData.Items = new ObservableCollection<Comodity>(marketData.Items);
+           }
 
             return marketData;
         }
