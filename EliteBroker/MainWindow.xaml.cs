@@ -1,4 +1,5 @@
 ﻿using EliteBroker.DataConsumers;
+using EliteBroker.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,15 @@ namespace EliteBroker
         public MainWindow()
         {
             InitializeComponent();
-           
+            MarketTab.lv.ItemsSource = dataContext.Market.Items;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            dataContext.Market.Items.Add(new Comodity() { Name = "test", Demand = 120});
+            
+        }
+
+       
     }
 }

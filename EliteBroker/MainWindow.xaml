@@ -13,10 +13,10 @@
     <Grid Width="606">
 
 
-        <TabControl HorizontalAlignment="Left" Margin="225,0,0,0" VerticalAlignment="Center" Height="384" Width="356">
-            <TabItem Header="TabItem">
+        <TabControl x:Name="MainTabControl" HorizontalAlignment="Left" Margin="225,0,0,0" VerticalAlignment="Center" Height="384" Width="356">
+            <TabItem x:Name="tab1" Header="TabItem">
                 <Grid Background="#FFE5E5E5">
-                    <UiComponents:MarketControl HorizontalAlignment="Left" Height="356" Margin="-24,0,0,0" VerticalAlignment="Center" Width="417" >
+                    <UiComponents:MarketControl x:Name="MarketTab" HorizontalAlignment="Left" Height="356" Margin="-24,0,0,0" VerticalAlignment="Center" Width="417" >
                         <UiComponents:MarketControl.DataContext>
                             <local:DataStore>
                                 <local:DataStore.Market>
@@ -31,6 +31,7 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
+        <Button Content="Button" HorizontalAlignment="Left" Height="62" Margin="78,182,0,0" VerticalAlignment="Top" Width="97" Click="Button_Click"/>
 
     </Grid>
 </Window>
