@@ -53,11 +53,17 @@ namespace EliteBroker.DataConsumers
             JsonSerializer serializer = new JsonSerializer();
             MarketData marketData = null;
             WaitForFileAccess(logPath + fileName);
-            using (StreamReader file = File.OpenText(logPath + fileName))
+            try
             {
-                marketData = (MarketData)serializer.Deserialize(file, typeof(MarketData));
-                marketData.Items = new ObservableCollection<Comodity>(marketData.Items);
-           }
+                using (StreamReader file = File.OpenText(logPath + fileName))
+                {
+                    marketData = (MarketData)serializer.Deserialize(file, typeof(MarketData));
+                    marketData.Items = new ObservableCollection<Comodity>(marketData.Items);
+                }
+            }
+            catch (Exception e) {
+                MessageBox.Show(e.Message);
+            }
 
             return marketData;
         }
