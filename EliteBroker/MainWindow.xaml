@@ -18,11 +18,7 @@
                 <Grid Background="#FFE5E5E5">
                     <UiComponents:MarketControl x:Name="MarketTab" HorizontalAlignment="Left" Height="356" Margin="-24,0,0,0" VerticalAlignment="Center" Width="417" >
                         <UiComponents:MarketControl.DataContext>
-                            <local:DataStore>
-                                <local:DataStore.Market>
-                                    <Models:MarketData/>
-                                </local:DataStore.Market>
-                            </local:DataStore>
+                            <local:DataStore/>
                         </UiComponents:MarketControl.DataContext>
                     </UiComponents:MarketControl>
                 </Grid>

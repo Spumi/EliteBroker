@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,14 +29,26 @@ namespace EliteBroker
         {
             InitializeComponent();
             MarketTab.lv.ItemsSource = dataContext.Market.Items;
+            dataContext.Market.OnItemsUpdate = () =>
+            {
+                Dispatcher.Invoke(
+                      () => MarketTab.lv.ItemsSource = dataContext.Market.Items);
+            };
+            dataContext.OnMarketUpdate = () =>
+            {
+                Dispatcher.Invoke(
+                    () => MarketTab.lv.ItemsSource = dataContext.Market.Items);
+            };
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            dataContext.Market.Items.Add(new Comodity() { Name = "test", Demand = 120});
+            //dataContext.Market.Items.Add(new Comodity() { Name = "test", Demand = 120});
+            LogPathLocator logPathLocator = new LogPathLocator();
+            LogReader lr = new LogReader(logPathLocator.LogPath, ref dataContext);
+
             
         }
-
-       
+                
     }
 }
