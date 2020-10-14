@@ -11,4 +11,13 @@
     <PackageReference Include="PropertyChanged.Fody" Version="3.2.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Events\Combat\" />
+    <Folder Include="Models\Events\Exploration\" />
+    <Folder Include="Models\Events\Other\" />
+    <Folder Include="Models\Events\PowerPlay\" />
+    <Folder Include="Models\Events\StationServices\" />
+    <Folder Include="Models\Events\Trade\" />
+  </ItemGroup>
+
 </Project>
