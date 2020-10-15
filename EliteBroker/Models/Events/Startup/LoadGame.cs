@@ -13,7 +13,7 @@ namespace EliteBroker.Models.Events.Startup
         public string ShipID { get; set; }
         public string GameMode { get; set; }
         public string Group { get; set; }
-        public long Credits { get; set }
+        public long Credits { get; set; }
         public long Loan { get; set; }
     }
 }
