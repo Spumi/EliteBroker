@@ -27,6 +27,7 @@ namespace EliteBroker.DataConsumers
 
             this.fsw.Created += Fsw_Created;
             this.fsw.EnableRaisingEvents = true;
+            logPathLocator.LogpathChanged = LogPathChanged;
         }
 
         private void Fsw_Created(object sender, FileSystemEventArgs e)
@@ -36,5 +37,15 @@ namespace EliteBroker.DataConsumers
             }
         }
 
+        public void LogPathChanged(string path) {
+            fsw.Changed += PollEvents;
+        }
+
+        private void PollEvents(object source, FileSystemEventArgs e)
+        {
+            if (e.Name == logPathLocator.LogStreamPath){
+                
+            }
+        }
     }
 }
