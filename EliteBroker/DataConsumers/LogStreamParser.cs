@@ -21,6 +21,7 @@ namespace EliteBroker.DataConsumers
             this.logPathLocator = logPathLocator;
             this.fileName = fileName;
             this.logPathLocator = logPathLocator;
+            EventFactory = new EventFactory();
 
             this.fsw.NotifyFilter |= NotifyFilters.LastAccess
                                  | NotifyFilters.LastWrite
@@ -55,8 +56,12 @@ namespace EliteBroker.DataConsumers
                         //marketData = (MarketData)serializer.Deserialize(file, typeof(MarketData));
                         //marketData.Items = new ObservableCollection<Comodity>(marketData.Items);
                         //MessageBox.Show(file.ReadLine());
-                        EventFactory.GenerateEvent(file.ReadLine());
-                        lastPos = file.BaseStream.Position;
+                        var line = file.ReadLine();
+                        if (line != null)
+                        {
+                            EventFactory.GenerateEvent(line);
+                            lastPos = file.BaseStream.Position;
+                        }
                     }
                 }
                 catch (Exception ex)

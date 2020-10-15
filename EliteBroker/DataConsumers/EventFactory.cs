@@ -4,9 +4,10 @@ namespace EliteBroker.DataConsumers
 {
     public class EventFactory
     {
-        internal void GenerateEvent(string v)
+        internal void GenerateEvent(string eventType)
         {
-            throw new NotImplementedException();
+            //testing.. will be used for event object generations
+            System.Windows.MessageBox.Show(Type.GetType("EliteBroker.Models.Events.Travel." + eventType).FullName);
         }
     }
 }
