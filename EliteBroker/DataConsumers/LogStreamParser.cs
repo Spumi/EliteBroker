@@ -13,6 +13,7 @@ namespace EliteBroker.DataConsumers
         private LogPathLocator logPathLocator;
         private string fileName;
         private long lastPos = 0;
+        public EventFactory EventFactory { get; set; }
 
         public LogStreamParser(FileSystemWatcher fsw, LogPathLocator logPathLocator, string fileName)
         {
@@ -54,6 +55,7 @@ namespace EliteBroker.DataConsumers
                         //marketData = (MarketData)serializer.Deserialize(file, typeof(MarketData));
                         //marketData.Items = new ObservableCollection<Comodity>(marketData.Items);
                         //MessageBox.Show(file.ReadLine());
+                        EventFactory.GenerateEvent(file.ReadLine());
                         lastPos = file.BaseStream.Position;
                     }
                 }
