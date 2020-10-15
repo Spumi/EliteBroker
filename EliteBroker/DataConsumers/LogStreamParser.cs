@@ -12,6 +12,7 @@ namespace EliteBroker.DataConsumers
         private FileSystemWatcher fsw;
         private LogPathLocator logPathLocator;
         private string fileName;
+        private long lastPos = 0;
 
         public LogStreamParser(FileSystemWatcher fsw, LogPathLocator logPathLocator, string fileName)
         {
@@ -41,11 +42,27 @@ namespace EliteBroker.DataConsumers
             fsw.Changed += PollEvents;
         }
 
-        private void PollEvents(object source, FileSystemEventArgs e)
+        private void PollEvents(object source, FileSystemEventArgs logFile)
         {
-            if (e.Name == logPathLocator.LogStreamPath){
-                
+            if (logFile.Name == logPathLocator.LogStreamPath){
+                Utils.FileUtils.WaitForFileAccess(logFile.FullPath);
+                try
+                {
+                    using (StreamReader file = File.OpenText(logFile.FullPath))
+                    {
+                        file.BaseStream.Seek(lastPos , SeekOrigin.Begin);
+                        //marketData = (MarketData)serializer.Deserialize(file, typeof(MarketData));
+                        //marketData.Items = new ObservableCollection<Comodity>(marketData.Items);
+                        //MessageBox.Show(file.ReadLine());
+                        lastPos = file.BaseStream.Position;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
+        
     }
 }

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows;
+using EliteBroker.Utils;
 
 namespace EliteBroker.DataConsumers
 {
@@ -53,7 +54,7 @@ namespace EliteBroker.DataConsumers
         {
             JsonSerializer serializer = new JsonSerializer();
             MarketData marketData = null;
-            WaitForFileAccess(logPath + fileName);
+            Utils.FileUtils.WaitForFileAccess(logPath + fileName);
             try
             {
                 using (StreamReader file = File.OpenText(logPath + fileName))
@@ -69,23 +70,7 @@ namespace EliteBroker.DataConsumers
             return marketData;
         }
 
-        private void WaitForFileAccess(string fullPath)
-        {
-            while (true)
-            {
-                try
-                {
-                    using (StreamReader stream = new StreamReader(fullPath))
-                    {
-                        break;
-                    }
-                }
-                catch
-                {
-                    Thread.Yield();
-                }
-            }
-        }
+       
 
     }
 }
