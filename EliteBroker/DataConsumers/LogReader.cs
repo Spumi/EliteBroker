@@ -19,6 +19,7 @@ namespace EliteBroker.DataConsumers
         private FileSystemWatcher fsw;
         private DataStore data;
         
+        public FileSystemWatcher Fsw { get => fsw; }
         // todo: move fsw to it's own class
 
         public LogReader(string path, ref DataStore data)

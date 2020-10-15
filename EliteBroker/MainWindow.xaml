@@ -28,6 +28,7 @@
             </TabItem>
         </TabControl>
         <Button Content="Button" HorizontalAlignment="Left" Height="62" Margin="78,182,0,0" VerticalAlignment="Top" Width="97" Click="Button_Click"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="30" Margin="78,90,0,0" VerticalAlignment="Top" Width="33" Click="Button_Click_1"/>
 
     </Grid>
 </Window>

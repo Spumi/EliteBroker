@@ -49,6 +49,12 @@ namespace EliteBroker
 
             
         }
-                
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            LogPathLocator logPathLocator = new LogPathLocator();
+            LogReader lr = new LogReader(logPathLocator.LogPath, ref dataContext);
+            LogStreamParser lsp = new LogStreamParser(lr.Fsw, logPathLocator, ""); 
+        }
     }
 }

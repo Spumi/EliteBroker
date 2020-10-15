@@ -8,7 +8,7 @@ namespace EliteBroker.DataConsumers
     public class LogPathLocator
     {
         public string LogPath { get; private set; }
-        
+        public string LogStreamPath { get; set; }
 
         public LogPathLocator(){
             var userDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
