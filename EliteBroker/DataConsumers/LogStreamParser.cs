@@ -41,6 +41,8 @@ namespace EliteBroker.DataConsumers
         }
 
         public void LogPathChanged(string path) {
+            fsw.Changed -= PollEvents;
+            lastPos = 0;
             fsw.Changed += PollEvents;
         }
 
@@ -53,9 +55,6 @@ namespace EliteBroker.DataConsumers
                     using (StreamReader file = File.OpenText(logFile.FullPath))
                     {
                         file.BaseStream.Seek(lastPos , SeekOrigin.Begin);
-                        //marketData = (MarketData)serializer.Deserialize(file, typeof(MarketData));
-                        //marketData.Items = new ObservableCollection<Comodity>(marketData.Items);
-                        //MessageBox.Show(file.ReadLine());
                         var line = file.ReadLine();
                         if (line != null)
                         {
